@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+{% extends "index.html" %}
+{% block content %}
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Kindkart </title>
+        <!-- plugins:css -->
+        
+      </head>
+<body>
+  <form action="{% url 'addsubcategoriespost' %}" method="post">
+    {% csrf_token %}
+    <div class="card-body">
+        <h4 class="card-title">Add Sub Category</h4>
+        
+
+        <div class="form-group">
+            <label>Choose Category</label>
+            <select class="form-control form-control-lg" name="category">
+              {% for i in data %}
+                <option>{{i.name}}</option>
+                {% endfor %}
+              </select>
+          </div>
+
+
+          <div class="form-group">
+            <label>Enter Sub Category</label>
+            <input type="text" name="subcategory" class="form-control form-control-lg" placeholder="Category" aria-label="Username">
+          </div>
+
+          <div class="form-group">
+            <label>Description</label>
+            <textarea name="description"  class="form-control form-control-lg" id=""></textarea>
+           
+          </div>
+
+          
+        <div class="form-group">
+            <input type="submit" class="text-white btn btn-primary form-control-lg" placeholder="Username" aria-label="Username">
+          </div>
+
+        
+      </div>
+      </form>
+</body>
+</html>
+{% endblock %}

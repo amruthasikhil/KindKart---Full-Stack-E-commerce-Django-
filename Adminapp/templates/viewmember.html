@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% extends "index.html" %}
+{% block content %}
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Kindkart </title>
+        <!-- plugins:css -->
+        
+      </head>
+<body>
+    <div class="row text-center">
+
+        {% for i in data %}
+      <!-- Team item-->
+      <div class="col-xl-3 col-sm-6 ">
+        <div class="bg-white  shadow-sm py-5 px-4"><img src="{{i.pic.url}}" alt="" width="200" class="img-fluid  mb-3 img-thumbnail shadow-sm">
+          <h5 class="mb-0">{{i.name}}</h5><span class="small text-uppercase text-muted">{{i.designation}}</span>
+          <br>
+          <a href="{% url 'deleteproduct' pid=i.id %}" class="btn btn-primary mt-2 text-white">Edit</a>
+
+          <a href="{% url 'deleteproduct' pid=i.id %}" class="btn btn-danger mt-2 text-white">Delete</a>
+
+
+        </div>
+      </div>
+      {% endfor %}
+      <!-- End-->
+
+    
+      <!-- End-->
+
+    </div>
+</body>
+</html>
+{% endblock %}

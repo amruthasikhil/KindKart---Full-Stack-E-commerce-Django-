@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+{% extends "index.html" %}
+{% block content %}
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Kindkart </title>
+    <!-- plugins:css -->
+
+</head>
+
+<body>
+    <div class="container py-5">
+
+        <div class="row mx-2">
+        <div class="card py-2 mx-2" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Category</h5>
+                <i class="mdi mdi-application"></i> 
+                <h6 class="card-subtitle mb-2 text-muted">Total category</h6>
+                <p class="card-text"><b> Total Category Added:</b><span style="color: blue;font-weight: bold;">  {{catcount}}</span></p>
+                <a href="{% url 'viewcategories' %}" class="btn btn-primary" style="color: white;width: 180px;">View Now</a>
+            </div>
+      </div>
+
+      <div class="card py-2 mx-2" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">Sub Category</h5>
+            <i class="mdi mdi-animation"></i> 
+            <h6 class="card-subtitle mb-2 text-muted">Total Subcategory</h6>
+            <p class="card-text">Total SubCategory Added:<span style="color: blue;font-weight: bold;"> {{subcount}}</span></p>
+            <a href="{% url 'viewsubcategories' %}" class="btn btn-primary" style="color: white;width: 180px;">View Now</a>
+        </div>
+  </div>
+
+  <div class="card py-2 mx-2" style="width: 18rem;">
+    <div class="card-body">
+        <h5 class="card-title">Product</h5>
+        <i class="mdi mdi-arrow-all"></i> 
+        <h6 class="card-subtitle mb-2 text-muted">Total Product</h6>
+        <p class="card-text">Total Product Added:<span style="color: blue;font-weight: bold;"> {{prodcount}}</span></p>
+        <a href="{% url 'viewproducts' %}" class="btn btn-primary" style="color: white;width: 180px;">View Now</a>
+    </div>
+</div>
+
+
+
+      
+    </div>
+    
+</div>
+
+</body>
+
+</html>
+{% endblock %}

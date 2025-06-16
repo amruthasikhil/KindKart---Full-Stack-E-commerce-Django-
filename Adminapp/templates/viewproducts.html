@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+{% extends "index.html" %}
+{% block content %}
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Kindkart </title>
+        <!-- plugins:css -->
+        
+      </head>
+<body>
+ <div>
+  <select class="form-control " name="category">
+    {% for i in sub %}
+      <option>{{i.name}}</option>
+      {% endfor %}
+    </select>
+ </div>
+
+             
+           
+ <div class="row text-start">
+
+    {% for i in data %}
+  <!-- Team item-->
+  <div class="col-xl-3 col-sm-6 ">
+    <div class="bg-white  shadow-sm py-5 px-4" style="box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;">
+      <img src="{{ i.image.url }}" alt="" width="200" height="200" style="object-fit: cover;">
+      <h5 class="mb-0 mt-2"><b>Product :</b>  {{i.name}}</h5><span class="small text-uppercase text-muted">{{i.designation}}</span>
+      <p><b>Sub Category :</b>{{i.subcategories}}</p>
+      <p><b>Description :</b>{{i.description}}</p>
+      <p><b>Price :</b>₹ {{i.price}}</p>
+      <p>                  <label class="badge badge-success">{{i.availability}}</label>
+      </p>
+      <p>
+        <label class="badge badge-success">{{i.condition}}</label>
+
+      </p>
+      <br>
+      <a href="{% url 'editproduct' pid=i.id %}" class="btn btn-danger text-white btn-sm">Edit</a>
+      <a href="{% url 'deleteproduct' pid=i.id %}" class="btn btn-danger text-white btn-sm">Delete</a>
+
+
+    </div>
+  </div>
+  {% endfor %}
+  <!-- End-->
+
+
+  <!-- End-->
+
+</div>
+
+     
+</body>
+</html>
+{% endblock %}
