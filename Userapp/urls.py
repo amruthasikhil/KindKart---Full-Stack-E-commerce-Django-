@@ -20,6 +20,7 @@ urlpatterns=[
 
 
     path('mycart/',views.Userprofile,name="mycart"),
+     path('cartdelte/<int:cartid>',views.Cartproductdelete,name="cartdelte"),
     path('Addtocart/',views.Addtocart,name="addtocart"),
 
      path('billingaddress/',views.billingaddress,name="billingaddress"),
@@ -37,6 +38,8 @@ urlpatterns=[
 
     path('productpageuser/',views.Productpageuser,name="productpageuser"),
      path('productpageuser_categorywise/<cname>',views.Productpageuser_categorywise,name="productpageuser_categorywise"),
+          path('Productpageuser_categorywisepost/',views.Productpageuser_categorywisepost,name="Productpageuser_categorywisepost"),
+
 
      path('productpageuser_search/',views.Productpageuser_search,name="productpageuser_search"),
     path('singleproduct/<int:pid>',views.Singleproduct,name="singleproduct"),

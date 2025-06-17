@@ -47,6 +47,9 @@ def Userhome(request):
 
 def Userhome_productsearch(request):
     if request.method == "POST" :
+        li=request.session['lid']
+        cartcount=CartDb.objects.filter(userid=li)
+        cartcount_no=cartcount.count()
         search=request.POST.get("search")
         obj=ProductDb.objects.filter(name__contains=search)[:6]
         catobj=CategoriesDb.objects.all()[:4]
@@ -64,7 +67,7 @@ def Userhome_productsearch(request):
                     "subcategory":i.name
                 })
                 print("============================",i.name)
-        return render(request,"userindex.html",{"pdata":obj,"catobj":catobj,"member":memeberobj})
+        return render(request,"userindex.html",{"pdata":obj,"catobj":catobj,"member":memeberobj,"cartcount_no":cartcount_no})
 
 
 def contactform(request):
@@ -128,7 +131,8 @@ def Userprofile(request):
             "totalprice": i.totalprice,
             "name": pobj.name,
              "subcategories": pobj.subcategories,
-            "condition": pobj.condition
+            "condition": pobj.condition,
+            "cartid":i.id
         })
     if totamount > 10:
         deliveryfees = 2
@@ -139,6 +143,13 @@ def Userprofile(request):
     request.session['del_fees']=deliveryfees
     request.session['finalamount']=finalamount
     return render(request, "Mycart.html", {"userobj": userobj, "data": newarr,"cartcount_no":cartcount_no,"totamount":totamount,"deliveryfees":deliveryfees,"finalamount":finalamount})
+
+
+
+def Cartproductdelete(request,cartid):
+    obj=CartDb.objects.get(id=cartid)
+    obj.delete()
+    return redirect(Userprofile)
 
 
 
@@ -247,20 +258,41 @@ def Paymentnavigation(request):
 
 def Productpageuser_categorywise(request,cname):
     category_choosen = cname
+    uid=request.session['lid']
+    cartcount=CartDb.objects.filter(userid=uid)
+    cartcount_no=cartcount.count()
     
     subcateg = SubcategoriesDb.objects.filter(categories=category_choosen)
-    subcategory_names = subcateg.values_list('name', flat=True)  # Get list of subcategory names
-
-    obj = ProductDb.objects.filter(subcategories__in=subcategory_names)  # Filter by subcategory names
+    subcategory_names = subcateg.values_list('name', flat=True)  
+    
+    obj = ProductDb.objects.filter(subcategories__in=subcategory_names)  
     print("Filtered Products:")
     for product in obj:
         print(f"ID: {product.id}, Name: {product.name}, Price: {product.price}, Subcategory: {product.subcategories}")
 
-    # [("Living Room Furniture",), ("Bedroom Furniture",)]
-    # ["Living Room Furniture", "Bedroom Furniture"]    
 
     catobj=CategoriesDb.objects.all()[:4]
-    return render(request,"categorywiseproduct.html",{"proobj":obj,"catobj":catobj})
+    return render(request,"categorywiseproduct.html",{"proobj":obj,"catobj":catobj,"cartcount_no":cartcount_no})
+
+
+
+
+
+
+def Productpageuser_categorywisepost(request):
+    cname=request.POST.get("cname")
+    uid=request.session['lid']
+    cartcount=CartDb.objects.filter(userid=uid)
+    cartcount_no=cartcount.count()
+    subcateg = SubcategoriesDb.objects.filter(categories=cname)
+    subcategory_names = subcateg.values_list('name', flat=True) 
+    obj = ProductDb.objects.filter(subcategories__in=subcategory_names)  
+    print("Filtered Products:")
+    for product in obj:
+        print(f"ID: {product.id}, Name: {product.name}, Price: {product.price}, Subcategory: {product.subcategories}")
+
+    catobj=CategoriesDb.objects.all()[:4]
+    return render(request,"category.html",{"proobj":obj,"catobj":catobj,"cartcount_no":cartcount_no})
 
 
 def Addtocart(request):
@@ -290,7 +322,10 @@ def Addtocart(request):
 
 def Singleproduct(request,pid):
     obj=ProductDb.objects.get(id=pid)
-    return render(request,"singleproduct.html",{"pobj":obj})
+    uid=request.session['lid']
+    cartcount=CartDb.objects.filter(userid=uid)
+    cartcount_no=cartcount.count()
+    return render(request,"singleproduct.html",{"pobj":obj,"cartcount_no":cartcount_no})
 
 def Userregister(request):
     return render(request,"userregister.html")
