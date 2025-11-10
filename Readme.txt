@@ -1,8 +1,8 @@
 
 
-# 🛍️ Shop & Donation Management System
+🛍️ Shop & Donation Management System
 
-## 📘 Overview
+📘 Overview
 
 The **Shop & Donation Management System** is a web-based platform that allows users to **buy products**, **donate items**, and enables **admins** and **shopkeepers** to manage all operations efficiently.
 It combines **e-commerce** and **donation management** in a single system with clear role-based access control.
