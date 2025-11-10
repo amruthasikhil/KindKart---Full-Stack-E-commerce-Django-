@@ -1,4 +1,3 @@
-
 # 🛍️ Shop & Donation Management System (Django)
 
 The **Shop & Donation Management System** is a robust, web-based platform that seamlessly integrates **e-commerce** and **charitable donation management** into a single centralized system. It provides distinct portals and access controls for four different user groups, ensuring efficient product sales, inventory tracking, and managed processing of donated items.
@@ -70,35 +69,7 @@ cd shop-donation-system-django # Replace with your actual folder name
 
 # Create and activate virtual environment
 python -m venv venv
-source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
 
 # Install required packages (Django, DRF, etc.)
 pip install -r requirements.txt
-````
-
-### 2\. Run Migrations
-
-Django will automatically create the SQLite database file and apply the necessary schema:
-
-```bash
-python manage.py makemigrations
-python manage.py migrate
-```
-
-### 3\. Create an Administrator Account
-
-You'll need a superuser account to access the Admin panel and set up the initial shop data:
-
-```bash
-python manage.py createsuperuser
-```
-
-### 4\. Start the Development Server
-
-```bash
-python manage.py runserver
-```
-
-**Access:** The main application will be available at `http://127.0.0.1:8000/`.
-
------
